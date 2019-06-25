@@ -15,7 +15,7 @@ class types extends Model
 
     public function news()
     {
-        return $this->hasMany('App\news','idtypes','id');
+        return $this->hasMany('App\news','idtypes','id'); 
     }
     
 }
