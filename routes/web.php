@@ -11,6 +11,16 @@
 |
 */
 
+use App\categories;
+
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get('test', function(){
+    $categories = categories::find(1);
+    foreach($categories->types as $types)
+    {
+        echo $types->name."<br>";
+    }
 });
