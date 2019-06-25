@@ -13,5 +13,9 @@ class types extends Model
         return $this->belongsTo('App\categories','idcategories','id');
     }
 
+    public function news()
+    {
+        return $this->hasMany('App\news','idtypes','id');
+    }
     
 }
