@@ -7,7 +7,8 @@
     <meta name="description" content="Khóa Học Lập Trình Laravel Framework 5.x Tại Khoa Phạm">
     <meta name="author" content="">
     <title>Admin - Minh Hieu</title>
-
+    <!-- loi few arrugment asset() thi doi thanh asset('') asset them ham rong -->
+    <base href="{{asset('')}}" >    
     <!-- Bootstrap Core CSS -->
     <link href="admin_asset/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 

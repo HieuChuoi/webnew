@@ -6,7 +6,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">Category
+                        <h1 class="page-header">Categories
                             <small>List</small>
                         </h1>
                     </div>
@@ -16,29 +16,31 @@
                             <tr align="center">
                                 <th>ID</th>
                                 <th>Name</th>
-                                <th>Category Parent</th>
-                                <th>Status</th>
+                                <th>Unsigned Name</th>
+                                <!-- <th>Category Parent</th>
+                                <th>Status</th> -->
                                 <th>Delete</th>
                                 <th>Edit</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="odd gradeX" align="center">
-                                <td>1</td>
-                                <td>Tin Tức</td>
-                                <td>None</td>
-                                <td>Hiện</td>
-                                <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="#"> Delete</a></td>
-                                <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="#">Edit</a></td>
-                            </tr>
-                            <tr class="even gradeC" align="center">
+                            @foreach($categories as $category)
+                                <tr class="odd gradeX" align="center">
+                                    <td>{{$category->id}}</td>
+                                    <td>{{$category->name}}</td>
+                                    <td>{{$category->unsigned_name}}</td>
+                                    <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="admin/categories/delete"> Delete</a></td>
+                                    <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="admin/categories/edit/{{$category->id}}">Edit</a></td>
+                                </tr>
+                            @endforeach
+                            <!-- <tr class="even gradeC" align="center">
                                 <td>2</td>
                                 <td>Bóng Đá</td>
                                 <td>Thể Thao</td>
                                 <td>Ẩn</td>
                                 <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="#"> Delete</a></td>
                                 <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="#">Edit</a></td>
-                            </tr>
+                            </tr> -->
                         </tbody>
                     </table>
                 </div>
