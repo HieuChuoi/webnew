@@ -11,12 +11,12 @@ class categoriesController extends Controller
     {
         $categories = categories::all();
         return view('admin.categories.list',['categories'=>$categories]
-            );
+            ); 
     }
 
     public function getAdd()
     {
-
+        // return view('admin.categories.add');
     }
 
     public function getEdit()
