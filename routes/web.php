@@ -27,7 +27,6 @@ Route::group(['prefix'=>'admin'],function(){
     Route::group(['prefix'=>'types'],function(){
         // admin/types/add  
         Route::get('list','categoriesController@getList');
-        Route::get('edit','categoriesController@getEdit');     
         Route::get('edit','categoriesController@getEdit');
         Route::get('add','categoriesController@getAdd');
     });
@@ -42,15 +41,13 @@ Route::group(['prefix'=>'admin'],function(){
     Route::group(['prefix'=>'slide'],function(){
         // admin/slide/add  
         Route::get('list','categoriesController@getList');
-        Route::get('edit','categoriesController@getEdit');
-        Route::get('edit','categoriesController@getEdit');                
+        Route::get('edit','categoriesController@getEdit');              
         Route::get('add','categoriesController@getAdd');
     });
 
     Route::group(['prefix'=>'User'],function(){
         // admin/User/add  
         Route::get('list','categoriesController@getList');
-        Route::get('edit','categoriesController@getEdit');
         Route::get('edit','categoriesController@getEdit');
         Route::get('add','categoriesController@getAdd');
     });
