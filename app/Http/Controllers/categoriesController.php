@@ -36,7 +36,7 @@ class categoriesController extends Controller
         $categories->unsigned_name = changeTitle($request->name);
         $categories->save();
         return redirect('admin/categories/add')->with('notification','Add Category Success!');
-    }
+    } 
 
     public function getEdit()
     {
