@@ -10,8 +10,7 @@ class categoriesController extends Controller
     public function getList()
     {
         $categories = categories::all();
-        return view('admin.categories.list',['categories'=>$categories]
-            ); 
+        return view('admin.categories.list',['categories'=>$categories]); 
     }
 
     public function getAdd()
