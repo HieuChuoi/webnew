@@ -19,9 +19,11 @@ Route::group(['prefix'=>'admin'],function(){
     Route::group(['prefix'=>'categories'],function(){
         // admin/categories/add  
         Route::get('list','categoriesController@getList');
-        Route::get('edit','categoriesController@getEdit');
+        Route::get('edit/{id}','categoriesController@getEdit');
+        Route::post('edit/{id}','categoriesController@postEdit');
         Route::get('add','categoriesController@getAdd');
-        Route::post('add','categoriesController@postAdd');    
+        Route::post('add','categoriesController@postAdd');  
+        Route::get('delete/{id}','categoriesController@getDelete');
     });
 
     Route::group(['prefix'=>'types'],function(){
