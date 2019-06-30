@@ -28,9 +28,12 @@ Route::group(['prefix'=>'admin'],function(){
 
     Route::group(['prefix'=>'types'],function(){
         // admin/types/add  
-        Route::get('list','categoriesController@getList');
-        Route::get('edit','categoriesController@getEdit');
-        Route::get('add','categoriesController@getAdd');
+        Route::get('list','typesController@getList');
+        Route::get('edit/{id}','typesController@getEdit');
+        Route::post('edit/{id}','typesController@postEdit');
+        Route::get('add','typesController@getAdd');
+        Route::post('add','typesController@postAdd');
+        Route::get('delete/{id}','typesController@getDelete');
     });
 
     Route::group(['prefix'=>'news'],function(){
