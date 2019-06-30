@@ -11,6 +11,11 @@
                         </h1>
                     </div>
                     <!-- /.col-lg-12 -->
+                    @if(session('notification'))
+                        <div class="alert alert-success">
+                            {{session('notification')}}
+                        </div>
+                    @endif
                     <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                         <thead>
                             <tr align="center">
@@ -29,7 +34,7 @@
                                     <td>{{$category->id}}</td>
                                     <td>{{$category->name}}</td>
                                     <td>{{$category->unsigned_name}}</td>
-                                    <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="admin/categories/delete"> Delete</a></td>
+                                    <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="admin/categories/delete/{{$category->id}}"> Delete</a></td>
                                     <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="admin/categories/edit/{{$category->id}}">Edit</a></td>
                                 </tr>
                             @endforeach
