@@ -38,9 +38,9 @@ Route::group(['prefix'=>'admin'],function(){
 
     Route::group(['prefix'=>'news'],function(){
         // admin/news/add  
-        Route::get('list','categoriesController@getList');
-        Route::get('edit','categoriesController@getEdit');
-        Route::get('add','categoriesController@getAdd');
+        Route::get('list','newsController@getList');
+        Route::get('edit','newsController@getEdit');
+        Route::get('add','newsController@getAdd');
     });
 
     Route::group(['prefix'=>'slide'],function(){

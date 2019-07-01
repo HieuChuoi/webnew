@@ -6,7 +6,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">Category
+                        <h1 class="page-header">New
                             <small>List</small>
                         </h1>
                     </div>
@@ -15,30 +15,39 @@
                         <thead>
                             <tr align="center">
                                 <th>ID</th>
-                                <th>Name</th>
-                                <th>Category Parent</th>
-                                <th>Status</th>
+                                <th>Title</th>
+                                <th>Summary</th>
+                                <th>Category</th>
+                                <th>Type</th>
+                                <th>View</th>
+                                <th>Highlight</th>
                                 <th>Delete</th>
                                 <th>Edit</th>
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach($news as $new)
                             <tr class="odd gradeX" align="center">
-                                <td>1</td>
-                                <td>Tin Tức</td>
-                                <td>None</td>
-                                <td>Hiện</td>
-                                <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="#"> Delete</a></td>
-                                <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="#">Edit</a></td>
+                                <td>{{$new->id}}</td>
+                                <td>
+                                <p>{{$new->title}}</p>
+                                    <img width="100px" src="upload/tintuc/{{$new->image}}" alt="">
+                                </td>
+                                <td>{{$new->summary}}</td>
+                                <td>{{$new->types->categories->name}}</td>
+                                <td>{{$new->types->name}}</td>
+                                <td>{{$new->view}}</td>
+                                <td>
+                                    @if($new->highlight == 0)
+                                        {{"No"}}
+                                    @else
+                                        {{"Yes"}}
+                                    @endif
+                                </td>
+                                <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="admin/news/delete/{{$new->id}}"> Delete</a></td>
+                                <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="admin/news/edit/{{$new->id}}">Edit</a></td>
                             </tr>
-                            <tr class="even gradeC" align="center">
-                                <td>2</td>
-                                <td>Bóng Đá</td>
-                                <td>Thể Thao</td>
-                                <td>Ẩn</td>
-                                <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="#"> Delete</a></td>
-                                <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="#">Edit</a></td>
-                            </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
