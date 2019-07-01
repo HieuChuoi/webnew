@@ -30,7 +30,7 @@
                             <input type="hidden" name="_token" value="{{csrf_token()}}" />
                             <div class="form-group">
                                 <label>Category Name</label>
-                                <input class="form-control" name="name" placeholder="Please Enter Category Name" />
+                                <input class="form-control" name="name" placeholder="Please Enter Category Name"/>
                             </div>
 
                             <button type="submit" class="btn btn-default">Category Add</button>

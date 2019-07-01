@@ -44,12 +44,31 @@ class typesController extends Controller
 
     public function getEdit($id)
     {
-
+        $categories = categories::all();
+        $types = types::find($id);
+        return view('admin.types.edit',['types'=>$types],['categories'=>$categories]);
     }
 
     public function postEdit(Request $request,$id)
     {
-
+        $this->validate($request,
+        [
+            'name'=>'required|unique:types,name|min:3|max:100',
+            'categories'=>'required'
+        ],
+        [
+            'name.required'=>'You have not entered Type name',
+            'name.unique'=>'Type name is already excist',
+            'name.mix'=>'Type name must have 3->100 characters',
+            'name.max'=>'Type name must have 3->100 characters',
+            'categories.required'=>'You have not choosed Category'
+        ]);
+        $types = types::find($id);
+        $types->name = $request->name;
+        $types->unsigned_name =changeTitle($request->name);
+        $types->idcategories = $request->categories;
+        $types->save();
+        return redirect('admin/types/edit/'.$id)->with('notification','Edit Type Success');
     }
 
     public function getDelete($id)

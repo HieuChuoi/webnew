@@ -33,6 +33,7 @@
                                     <td>{{$type->id}}</td>
                                     <td>{{$type->name}}</td>
                                     <td>{{$type->unsigned_name}}</td>
+                                    <td>{{$type->categories->name}}</td>
                                     <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="admin/types/delete/{{$type->id}}"> Delete</a></td>
                                     <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="admin/types/edit/{{$type->id}}">Edit</a></td>
                                 </tr>
