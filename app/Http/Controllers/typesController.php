@@ -16,53 +16,40 @@ class typesController extends Controller
 
     public function getAdd()
     {
-        return view('admin.categories.add');
+        $categories = categories::all();
+        return view('admin.types.add',['categories'=>$categories]);
     }
 
     public function postAdd(Request $request)
     {
         $this->validate($request,
-            [
-                'name' => 'required|min:3|max:100|unique:categories,name'
-            ],
-            [
-                'name.unique' => 'Category name is already excist',
-                'name.required' => 'You have not entered a category name.',
-                'name.min' => 'Category name must have 3->100 characters',
-                'name.max' => 'Category name must have 3->100 characeters'
-            ]
-            );
-        $categories = new categories;
-        $categories->name = $request->name;
-        $categories->unsigned_name = changeTitle($request->name);
-        $categories->save();
-        return redirect('admin/categories/add')->with('notification','Add Category Success!');
+        [
+            'name'=>'required|unique:types,name|min:3|max:100',
+            'categories'=>'required'
+        ],
+        [
+            'name.required'=>'You have not entered Type name',
+            'name.unique'=>'Type name is already excist',
+            'name.mix'=>'Type name must have 3->100 characters',
+            'name.max'=>'Type name must have 3->100 characters',
+            'categories.required'=>'You have not choosed Category'
+        ]);
+        $types = new types;
+        $types->name = $request->name;
+        $types->unsigned_name = changeTitle($request->name);
+        $types->idcategories = $request->categories;
+        $types->save();
+        return redirect('admin/types/add')->with('notification','Add Type Success!');
     } 
 
     public function getEdit($id)
     {
-        $categories = categories::find($id);
-        return view ('admin.categories.edit',['categories'=>$categories]);
+
     }
 
     public function postEdit(Request $request,$id)
     {
-        $categories = categories::find($id);
-        $this->validate($request,
-            [
-                'name' => 'required|unique:categories,name|min:3|max:100'
-            ],
-            [
-                'name.required' => 'You not have entered a category name',
-                'name.unique' => 'Category name is already excist',
-                'name.min' => 'Category name must have 3->100 characeters',
-                'name.max' => 'Category name must have 3->100 characeters'
-            ]
-            );
-        $categories->name = $request->name;
-        $categories->unsigned_name = changeTitle($request->name);
-        $categories->save();
-        return redirect('admin/categories/edit/'.$id)->with('notification','Edit success');
+
     }
 
     public function getDelete($id)
