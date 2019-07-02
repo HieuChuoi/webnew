@@ -11,6 +11,8 @@
 |
 */
 use App\categories;
+use App\news;
+use App\types;
 Route::get('/', function () {
     return view('welcome');
 });
@@ -18,29 +20,34 @@ Route::get('/', function () {
 Route::group(['prefix'=>'admin'],function(){
     Route::group(['prefix'=>'categories'],function(){
         // admin/categories/add  
-        Route::get('list','categoriesController@getList');
-        Route::get('edit/{id}','categoriesController@getEdit');
-        Route::post('edit/{id}','categoriesController@postEdit');
-        Route::get('add','categoriesController@getAdd');
-        Route::post('add','categoriesController@postAdd');  
-        Route::get('delete/{id}','categoriesController@getDelete');
+        Route::get('list','CategoriesController@getList');
+        Route::get('edit/{id}','CategoriesController@getEdit');
+        Route::post('edit/{id}','CategoriesController@postEdit');
+        Route::get('add','CategoriesController@getAdd');
+        Route::post('add','CategoriesController@postAdd');  
+        Route::get('delete/{id}','CategoriesController@getDelete');
     });
 
     Route::group(['prefix'=>'types'],function(){
         // admin/types/add  
-        Route::get('list','typesController@getList');
-        Route::get('edit/{id}','typesController@getEdit');
-        Route::post('edit/{id}','typesController@postEdit');
-        Route::get('add','typesController@getAdd');
-        Route::post('add','typesController@postAdd');
-        Route::get('delete/{id}','typesController@getDelete');
+        Route::get('list','TypesController@getList');
+        Route::get('edit/{id}','TypesController@getEdit');
+        Route::post('edit/{id}','TypesController@postEdit');
+        Route::get('add','TypesController@getAdd');
+        Route::post('add','TypesController@postAdd');
+        Route::get('delete/{id}','TypesController@getDelete');
     });
 
     Route::group(['prefix'=>'news'],function(){
         // admin/news/add  
-        Route::get('list','newsController@getList');
-        Route::get('edit','newsController@getEdit');
-        Route::get('add','newsController@getAdd');
+        Route::get('list','NewsController@getList');
+        Route::get('edit','NewsController@getEdit');
+        Route::get('add','NewsController@getAdd');
+        Route::post('add','NewsController@postAdd');
+    });
+
+    Route::group(['prefix'=>'ajax'],function(){
+        Route::get('types/{idcategories}','AjaxController@getTypes');
     });
 
     Route::group(['prefix'=>'slide'],function(){

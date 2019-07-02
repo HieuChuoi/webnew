@@ -6,7 +6,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">Category
+                        <h1 class="page-header">New
                             <small>Add</small>
                         </h1>
                     </div>
@@ -14,10 +14,19 @@
                     <div class="col-lg-7" style="padding-bottom:120px">
                         <form action="" method="POST">
                             <div class="form-group">
-                                <label>Category Parent</label>
-                                <select class="form-control">
-                                    <option value="0">Please Choose Category</option>
-                                    <option value="">Tin Tức</option>
+                                <label>Category</label>
+                                <select class="form-control" name="categories" id="categories">
+                                    @foreach($categories as $category)
+                                        <option value="{{$category->id}}">{{$category->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Type</label>
+                                <select class="form-control" name="types" id="types">
+                                    @foreach($types as $type)
+                                        <option value="{{$type->id}}">{{$type->name}}</option>
+                                    @endforeach
                                 </select>
                             </div>
                             <div class="form-group">
@@ -56,4 +65,17 @@
         </div>
 <!-- /#page-wrapper -->
 
+@endsection
+
+@section('script')
+    <script>
+        $(document).ready(function(){
+            $("#categories").change(function(){
+                var idcategories = $(this).val();
+                $.get("admin/ajax/types/"+idcategories, function(data){
+                    $("#types").html(data);
+                });
+            });
+        });
+    </script>
 @endsection
