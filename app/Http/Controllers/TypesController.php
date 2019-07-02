@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\categories;
 use App\types;
 
-class typesController extends Controller
+class TypesController extends Controller
 {
     public function getList()
     {

@@ -7,7 +7,7 @@ use App\categories;
 use App\types;
 use App\news;
 
-class newsController extends Controller
+class NewsController extends Controller
 {
     public function getList()
     {
@@ -17,7 +17,9 @@ class newsController extends Controller
 
     public function getAdd()
     {
-
+        $categories = categories::all();
+        $types = types::all();
+        return view('admin.news.add',['categories'=>$categories,'types'=>$types]);
     }
 
     public function postAdd(Request $request)
