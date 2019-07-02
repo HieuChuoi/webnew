@@ -14,7 +14,7 @@ class AjaxController extends Controller
         $types = types::where('idcategories',$idcategories)->get();
         foreach($types as $type)
         {
-            echo "<option value='.$type->id.'>$type->name</option>";
+            echo "<option value='.$type->id.'>$type->name</option>"; 
         }
     }
 }

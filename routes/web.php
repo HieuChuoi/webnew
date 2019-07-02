@@ -47,7 +47,7 @@ Route::group(['prefix'=>'admin'],function(){
     });
 
     Route::group(['prefix'=>'ajax'],function(){
-        Route::get('types/{idcategories}','AjaxController@getTypes');
+        Route::get('types/{idcategories}','AjaxController@getTypes'); 
     });
 
     Route::group(['prefix'=>'slide'],function(){
