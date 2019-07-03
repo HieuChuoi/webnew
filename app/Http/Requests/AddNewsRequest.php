@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use App\Rules\Length;
 
-class AddCategoriesRequest extends FormRequest
+class AddNewsRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,20 +25,19 @@ class AddCategoriesRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required',
-            'unique:categories,name',
-            new Length()]
+            'title' => ['required','unique:news,title',new Length()],
+            'summary' => 'required',
+            'content' => 'required'
         ];
     }
 
     public function messages()
     {
-        return [
-            //
-                'name.unique' => 'Category name is already excist',
-                'name.required' => 'You have not entered a category name.'
-                // 'name.min' => 'Category name must have 3->100 characters',
-                // 'name.max' => 'Category name must have 3->100 characeters'
+        return[
+            'title.unique' => 'Title is already excist',
+            'title.required' => 'You have not entered a title.',
+            'summary.required' => 'You have not entered summary',
+            'content.required' => 'You have not entered content'
         ];
     }
 }

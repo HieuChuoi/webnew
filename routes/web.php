@@ -44,6 +44,7 @@ Route::group(['prefix'=>'admin'],function(){
         Route::get('edit','NewsController@getEdit');
         Route::get('add','NewsController@getAdd');
         Route::post('add','NewsController@postAdd');
+        Route::get('delete/{id}','NewsController@getDelete');
     });
 
     Route::group(['prefix'=>'ajax'],function(){

@@ -12,7 +12,21 @@
                     </div>
                     <!-- /.col-lg-12 -->
                     <div class="col-lg-7" style="padding-bottom:120px">
+                        @if(count($errors) > 0)
+                            <div class="alert alert-danger">
+                                @foreach($errors->all() as $error)
+                                    {{$error}}<br>
+                                @endforeach
+                            </div>
+                        @endif
+
+                        @if(session('notification'))
+                            <div class="alert alert-success">
+                                {{session('notification')}}
+                            </div>
+                        @endif
                         <form action="" method="POST">
+                        <input type="hidden" name="_token" value="{{csrf_token()}}">
                             <div class="form-group">
                                 <label>Category Parent</label>
                                 <select class="form-control">
