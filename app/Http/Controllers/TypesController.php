@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\categories;
 use App\types;
+use  App\Http\Requests\AddTypesRequest;
+use App\Http\Requests\EditTypesRequest;
 
 class TypesController extends Controller
 {
@@ -20,20 +22,8 @@ class TypesController extends Controller
         return view('admin.types.add',['categories'=>$categories]);
     }
 
-    public function postAdd(Request $request)
-    {
-        $this->validate($request,
-        [
-            'name'=>'required|unique:types,name|min:3|max:100',
-            'categories'=>'required'
-        ],
-        [
-            'name.required'=>'You have not entered Type name',
-            'name.unique'=>'Type name is already excist',
-            'name.mix'=>'Type name must have 3->100 characters',
-            'name.max'=>'Type name must have 3->100 characters',
-            'categories.required'=>'You have not choosed Category'
-        ]);
+    public function postAdd(AddTypesRequest $request)
+    {   
         $types = new types;
         $types->name = $request->name;
         $types->unsigned_name = changeTitle($request->name);
@@ -49,20 +39,8 @@ class TypesController extends Controller
         return view('admin.types.edit',['types'=>$types],['categories'=>$categories]);
     }
 
-    public function postEdit(Request $request,$id)
+    public function postEdit(EditTypesRequest $request,$id)
     {
-        $this->validate($request,
-        [
-            'name'=>'required|unique:types,name|min:3|max:100',
-            'categories'=>'required'
-        ],
-        [
-            'name.required'=>'You have not entered Type name',
-            'name.unique'=>'Type name is already excist',
-            'name.mix'=>'Type name must have 3->100 characters',
-            'name.max'=>'Type name must have 3->100 characters',
-            'categories.required'=>'You have not choosed Category'
-        ]);
         $types = types::find($id);
         $types->name = $request->name;
         $types->unsigned_name =changeTitle($request->name);

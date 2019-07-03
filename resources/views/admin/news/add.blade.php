@@ -30,30 +30,8 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label>Category Name</label>
-                                <input class="form-control" name="txtCateName" placeholder="Please Enter Category Name" />
-                            </div>
-                            <div class="form-group">
-                                <label>Category Order</label>
-                                <input class="form-control" name="txtOrder" placeholder="Please Enter Category Order" />
-                            </div>
-                            <div class="form-group">
-                                <label>Category Keywords</label>
-                                <input class="form-control" name="txtOrder" placeholder="Please Enter Category Keywords" />
-                            </div>
-                            <div class="form-group">
-                                <label>Category Description</label>
-                                <textarea class="form-control" rows="3"></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label>Category Status</label>
-                                <label class="radio-inline">
-                                    <input name="rdoStatus" value="1" checked="" type="radio">Visible
-                                </label>
-                                <label class="radio-inline">
-                                    <input name="rdoStatus" value="2" type="radio">Invisible
-                                </label>
-                            </div>
+                                <label>New Name</label>
+                                <input class="form-control" name="name" placeholder="Please Enter New Name" />
                             <button type="submit" class="btn btn-default">Category Add</button>
                             <button type="reset" class="btn btn-default">Reset</button>
                         <form>
@@ -64,18 +42,4 @@
             <!-- /.container-fluid -->
         </div>
 <!-- /#page-wrapper -->
-
-@endsection
-
-@section('script')
-    <script>
-        $(document).ready(function(){
-            $("#categories").change(function(){
-                var idcategories = $(this).val();
-                $.get("admin/ajax/types/"+idcategories, function(data){
-                    $("#types").html(data); 
-                });
-            });
-        });
-    </script>
 @endsection
