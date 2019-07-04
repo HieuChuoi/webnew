@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\User;
-use App\Http\Requests\AddCategoriesRequest;
-use App\Http\Requests\EditCategoriesRequest;
+use App\Http\Requests\AddUserRequest;
+use App\Http\Requests\LoginRequest;
 
 class UserController extends Controller
 {
@@ -20,7 +21,7 @@ class UserController extends Controller
         return view('admin.User.add');
     }
 
-    public function postAdd(AddCategoriesRequest $request)
+    public function postAdd(AddUserRequest $request)
     {
         $user = new User;
         $user->name = $request->name;
@@ -31,20 +32,37 @@ class UserController extends Controller
         return redirect('admin/User/add')->with('notification','Add Success');
     } 
 
-    public function getEdit($id)
-    {
+    // public function getEdit($id)
+    // {
 
-    }
+    // }
 
-    public function postEdit(EditCategoriesRequest $request,$id)
-    {
+    // public function postEdit(EditUserRequest $request,$id)
+    // {
    
-    }
+    // }
 
     public function getDelete($id)
     {
         $user = User::find($id);
         $user->delete();
         return redirect('admin/User/list')->with('notification','Delete success');
+    }
+    
+    public function getLogin()
+    {
+        return view('admin.login');
+    }
+
+    public function postLogin(LoginRequest $request)
+    {
+        if(Auth::attempt(['email'=>$request->email,'password'=>$request->password]))
+        {
+            return redirect('admin/categories/list');
+        }
+        else
+        {
+            return redirect('admin/login')->with('notification','Login Failed');
+        }
     }
 }
