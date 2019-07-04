@@ -70,7 +70,7 @@
                         <a href="admin/User/list">List User</a>
                     </li>
                     <li>
-                        <a href="admin/User/liste">Add User</a>
+                        <a href="admin/User/add">Add User</a>
                     </li>
                 </ul>
                 <!-- /.nav-second-level -->

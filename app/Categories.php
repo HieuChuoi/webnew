@@ -10,11 +10,11 @@ class categories extends Model
 
     public function types()
     {
-        return $this->hasMany('App\types','idcategories','id');
+        return $this->hasMany('App\Types','idcategories','id');
     }
 
     public function news()
     {
-        return $this->hasManyThrough('App\news','App\types','idcategories','idtypes','id'); 
+        return $this->hasManyThrough('App\News','App\Types','idcategories','idtypes','id'); 
     }
 }

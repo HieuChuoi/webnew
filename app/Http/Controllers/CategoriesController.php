@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\categories;
+use App\Categories;
 use App\Http\Requests\AddCategoriesRequest;
 use App\Http\Requests\EditCategoriesRequest;
 
@@ -11,7 +11,7 @@ class CategoriesController extends Controller
 {
     public function getList()
     {
-        $categories = categories::all();
+        $categories = Categories::all();
         return view('admin.categories.list',['categories'=>$categories]); 
     }
 
@@ -22,7 +22,7 @@ class CategoriesController extends Controller
 
     public function postAdd(AddCategoriesRequest $request)
     {
-        $categories = new categories;
+        $categories = new Categories;
         $categories->name = $request->name;
         $categories->unsigned_name = changeTitle($request->name);
         $categories->save();
@@ -31,13 +31,13 @@ class CategoriesController extends Controller
 
     public function getEdit($id)
     {
-        $categories = categories::find($id);
+        $categories = Categories::find($id);
         return view ('admin.categories.edit',['categories'=>$categories]);
     }
 
     public function postEdit(EditCategoriesRequest $request,$id)
     {
-        $categories = categories::find($id);
+        $categories = Categories::find($id);
         $categories->name = $request->name;
         $categories->unsigned_name = changeTitle($request->name);
         $categories->save();
@@ -46,7 +46,7 @@ class CategoriesController extends Controller
 
     public function getDelete($id)
     {
-        $categories = categories::find($id);
+        $categories = Categories::find($id);
         $categories->delete();
         return redirect('admin/categories/list')->with('notification','Delete success');
     }

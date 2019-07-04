@@ -59,9 +59,12 @@ Route::group(['prefix'=>'admin'],function(){
     });
 
     Route::group(['prefix'=>'User'],function(){
-        // admin/User/add  
-        Route::get('list','categoriesController@getList');
-        Route::get('edit','categoriesController@getEdit');
-        Route::get('add','categoriesController@getAdd');
+        // admin/user/add  
+        Route::get('list','UserController@getList');
+        Route::get('edit/{id}','UserController@getEdit');
+        Route::post('edit/{id}','UserController@postEdit');
+        Route::get('add','UserController@getAdd');
+        Route::post('add','UserController@postAdd');
+        Route::get('delete/{id}','UserController@getDelete');
     });
 });

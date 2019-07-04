@@ -10,12 +10,12 @@ class comment extends Model
 
     public function news()
     {
-        return $this->belongsTo('App\news','idnews','id');
+        return $this->belongsTo('App\News','idnews','id');
     }
 
     public function user()
     {
-        return $this->belongsTo('App\user','iduser','id');
+        return $this->belongsTo('App\User','iduser','id');
     }
 
 }

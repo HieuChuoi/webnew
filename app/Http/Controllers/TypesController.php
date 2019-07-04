@@ -3,28 +3,28 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\categories;
-use App\types;
-use  App\Http\Requests\AddTypesRequest;
+use App\Categories;
+use App\Types;
+use App\Http\Requests\AddTypesRequest;
 use App\Http\Requests\EditTypesRequest;
 
 class TypesController extends Controller
 {
     public function getList()
     {
-        $types = types::all();
+        $types = Types::all();
         return view('admin.types.list',['types'=>$types]); 
     }
 
     public function getAdd()
     {
-        $categories = categories::all();
+        $categories = Categories::all();
         return view('admin.types.add',['categories'=>$categories]);
     }
 
     public function postAdd(AddTypesRequest $request)
     {   
-        $types = new types;
+        $types = new Types;
         $types->name = $request->name;
         $types->unsigned_name = changeTitle($request->name);
         $types->idcategories = $request->categories;
@@ -34,14 +34,14 @@ class TypesController extends Controller
 
     public function getEdit($id)
     {
-        $categories = categories::all();
-        $types = types::find($id);
+        $categories = Categories::all();
+        $types = Types::find($id);
         return view('admin.types.edit',['types'=>$types],['categories'=>$categories]);
     }
 
     public function postEdit(EditTypesRequest $request,$id)
     {
-        $types = types::find($id);
+        $types = Types::find($id);
         $types->name = $request->name;
         $types->unsigned_name =changeTitle($request->name);
         $types->idcategories = $request->categories;
@@ -51,7 +51,7 @@ class TypesController extends Controller
 
     public function getDelete($id)
     {
-        $types = types::find($id);
+        $types = Types::find($id);
         $types->delete();
         return redirect('admin/types/list')->with('notification','Delete success');
     }

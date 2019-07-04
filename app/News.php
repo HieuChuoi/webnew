@@ -10,12 +10,12 @@ class news extends Model
 
     public function types()
     {
-        return $this->belongsTo('App\types','idtypes','id');
+        return $this->belongsTo('App\Types','idtypes','id');
     }
 
     public function comment()
     {
-        return $this->hasMany('App\comment','idnews','id');
+        return $this->hasMany('App\Comment','idnews','id');
     }
 
 }

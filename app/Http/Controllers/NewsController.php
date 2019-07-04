@@ -3,29 +3,29 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\categories;
-use App\types;
-use App\news;
+use App\Categories;
+use App\Types;
+use App\News;
 use App\Http\Requests\AddNewsRequest;
 
 class NewsController extends Controller
 {
     public function getList()
     {
-        $news = news::orderBy('id', 'DESC')->get();
+        $news = News::orderBy('id', 'DESC')->get();
         return view('admin.news.list', ['news' => $news]);
     }
 
     public function getAdd()
     {
-        $categories = categories::all();
-        $types = types::all();
+        $categories = Categories::all();
+        $types = Types::all();
         return view('admin.news.add', ['categories' => $categories, 'types' => $types]);
     }
 
     public function postAdd(AddNewsRequest $request)
     {
-        $news = new news;
+        $news = new News;
         $news->title = $request->title;
         $news->unsigned_title = changeTitle($request->title);
         $news->idtypes = $request->types;
@@ -58,7 +58,7 @@ class NewsController extends Controller
 
     public function getDelete($id)
     {
-        $news = news::find($id);
+        $news = News::find($id);
         $news->delete();
         return redirect('admin/news/list')->with('notification', 'Delete success');
     }
